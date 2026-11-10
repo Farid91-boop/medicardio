@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediCardio | Mapa Conceptual Interactivo</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- MENÚ SEMICIRCULAR IZQUIERDO -->
+        <aside class="wheel-panel">
+
+            <svg
+                id="wheel"
+                class="wheel"
+                viewBox="0 0 520 900"
+                role="group"
+                aria-label="Temas de fisiología cardíaca"
+            >
+
+                <!-- Los sectores serán dibujados
+                     dinámicamente con JavaScript -->
+
+                <g id="wheel-sectors"></g>
+
+                <!-- Textos de cada sector -->
+                <g id="wheel-labels"></g>
+
+<!-- SEMICÍRCULO CENTRAL FIJO -->
+<g id="central-core">
+
+    <path
+        d="M 0 290
+           A 160 160 0 0 1 0 610
+           L 0 290 Z"
+        class="central-core-shape"
+    />
+
+    <text
+        x="85"
+        y="430"
+        class="central-core-text"
+        text-anchor="middle"
+    >
+        <tspan x="85" dy="0">
+            FISIOLOGÍA
+        </tspan>
+
+        <tspan x="85" dy="26">
+            CARDÍACA
+        </tspan>
+    </text>
+
+</g>
+
+            </svg>
+
+        </aside>
+
+
+        <!-- MAPA CONCEPTUAL DERECHO -->
+        <section class="map-panel">
+
+            <header class="map-header">
+
+                <p class="eyebrow">
+                    MEDICARDIO · MAPA CONCEPTUAL
+                </p>
+
+                <h1 id="topic-title">
+                    Fisiología cardíaca
+                </h1>
+
+                <p id="topic-description">
+                    Selecciona un tema del semicírculo
+                    para explorar sus relaciones fisiológicas.
+                </p>
+
+            </header>
+
+
+            <!-- ZONA DE RAMIFICACIONES -->
+            <div class="map-stage" id="map-stage">
+
+                <!-- Flechas animadas -->
+                <svg
+                    id="connections"
+                    class="connections"
+                    aria-hidden="true"
+                ></svg>
+
+                <!-- Conceptos del mapa -->
+                <div
+                    id="concept-nodes"
+                    class="concept-nodes"
+                ></div>
+
+            </div>
+
+
+            <!-- RELACIÓN FISIOLÓGICA -->
+            <footer class="map-footer">
+
+                <span class="footer-label">
+                    RELACIÓN FUNCIONAL
+                </span>
+
+                <p id="functional-relation">
+                    Actividad eléctrica →
+                    Contracción muscular →
+                    Cambios de presión →
+                    Movimiento valvular →
+                    Flujo sanguíneo.
+                </p>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+
+    <!-- ARCHIVO DE INTERACTIVIDAD -->
+    <script src="script.js"></script>
+
+</body>
+</html>
