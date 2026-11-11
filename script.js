@@ -28,23 +28,31 @@ const topics = [
             "contracciones que generan cambios de " +
             "presión y regulan el movimiento valvular.",
 
-        concepts: [
-            {
-                title: "Diástole ventricular",
-                link: "permite",
-                detail: "Relajación y llenado ventricular."
-            },
-            {
-                title: "Sístole auricular",
-                link: "completa",
-                detail: "El llenado de los ventrículos."
-            },
-            {
-                title: "Sístole ventricular",
-                link: "produce",
-                detail: "Contracción y eyección sanguínea."
-            }
-        ]
+        
+
+concepts: [
+    {
+        title: "Diástole auricular",
+        link: "permite",
+        detail: "Relajación de las aurículas y recepción de sangre procedente de las venas cavas y pulmonares."
+    },
+    {
+        title: "Sístole auricular",
+        link: "completa",
+        detail: "Contracción auricular posterior a la onda P. Aporta aproximadamente el 15-25 % final del llenado ventricular."
+    },
+    {
+        title: "Diástole ventricular",
+        link: "permite",
+        detail: "Relajación ventricular, caída de presión y llenado de los ventrículos."
+    },
+    {
+        title: "Sístole ventricular",
+        link: "produce",
+        detail: "Contracción isovolumétrica y eyección de sangre hacia la aorta y el tronco pulmonar."
+    }
+],
+
     },
 
     {
@@ -446,29 +454,373 @@ function selectTopic(index) {
    9. MOSTRAR CONTENIDO DEL TEMA
 ========================================== */
 
+
+const subtopics = {
+
+    // CICLO CARDÍACO
+
+   
+"Diástole auricular": [
+    "Relajación auricular: las aurículas reciben sangre",
+    "Retorno venoso: venas cavas y pulmonares",
+    "Presión auricular: aumenta con el llenado",
+    "Relación ventricular: ocurre durante gran parte del ciclo"
+],
+
+"Sístole auricular": [
+    "Onda P: despolarización auricular",
+    "Contracción auricular: impulsa sangre hacia los ventrículos",
+    "Válvulas AV abiertas: mitral y tricúspide",
+    "Llenado activo: aporta aproximadamente 15-25 %",
+    "VTD: volumen telediastólico aproximado de 130 mL"
+],
+
+"Diástole ventricular": [
+    "Relajación isovolumétrica: las cuatro válvulas cerradas",
+    "S2: cierre de las válvulas aórtica y pulmonar",
+    "Caída de presión: disminuye la presión ventricular",
+    "Llenado rápido: apertura de válvulas AV",
+    "Diástasis: llenado ventricular lento",
+    "Llenado activo: contribución de la sístole auricular"
+],
+
+"Sístole ventricular": [
+    "Complejo QRS: despolarización ventricular",
+    "Contracción isovolumétrica: aumenta la presión sin cambiar el volumen",
+    "S1: cierre de las válvulas mitral y tricúspide",
+    "Eyección: apertura de las válvulas semilunares",
+    "Volumen sistólico: aproximadamente 70 mL",
+    "VTS: volumen telesistólico aproximado de 60 mL"
+],
+
+
+    // VÁLVULAS CARDÍACAS
+
+
+"Válvula tricúspide": [
+    "Ubicación: entre aurícula derecha y ventrículo derecho",
+    "Apertura: presión auricular derecha mayor que ventricular",
+    "Cierre: inicio de la sístole ventricular",
+    "Función: evita el reflujo hacia la aurícula derecha",
+    "Ruido S1: contribuye al primer ruido cardíaco"
+],
+
+"Válvula mitral": [
+    "Ubicación: entre aurícula izquierda y ventrículo izquierdo",
+    "Apertura: presión auricular izquierda mayor que ventricular",
+    "Cierre: inicio de la sístole ventricular",
+    "Función: evita el reflujo hacia la aurícula izquierda",
+    "Ruido S1: contribuye al primer ruido cardíaco"
+],
+
+"Válvula pulmonar": [
+    "Ubicación: entre ventrículo derecho y tronco pulmonar",
+    "Apertura: presión ventricular derecha mayor que pulmonar",
+    "Cierre: inicio de la relajación isovolumétrica",
+    "Función: evita el retorno sanguíneo al ventrículo derecho",
+    "Ruido S2: contribuye al segundo ruido cardíaco"
+],
+
+"Válvula aórtica": [
+    "Ubicación: entre ventrículo izquierdo y aorta",
+    "Apertura: presión ventricular izquierda mayor que aórtica",
+    "Cierre: inicio de la relajación isovolumétrica",
+    "Función: evita el retorno sanguíneo al ventrículo izquierdo",
+    "Ruido S2: contribuye al segundo ruido cardíaco"
+],
+
+
+    // SISTEMA CARDIONECTOR
+
+"Nodo sinoauricular": [
+    "Ubicación: aurícula derecha, cerca de la vena cava superior",
+    "Función: marcapasos fisiológico del corazón",
+    "Automatismo: genera impulsos eléctricos espontáneos",
+    "Despolarización auricular: inicia la activación eléctrica de las aurículas",
+    "Onda P: representa la despolarización auricular"
+],
+
+"Nodo auriculoventricular": [
+    "Ubicación: región inferior del tabique interauricular",
+    "Función: recibe y retrasa la conducción del impulso",
+    "Retraso AV: favorece el llenado ventricular antes de la sístole",
+    "Intervalo PR: comprende la conducción auriculoventricular",
+    "Conexión: transmite el impulso hacia el haz de His"
+],
+
+"Haz de His y ramas": [
+    "Haz de His: conduce el impulso desde la unión AV",
+    "Esqueleto fibroso: el haz atraviesa el aislamiento eléctrico normal",
+    "Rama derecha: conduce el impulso hacia el ventrículo derecho",
+    "Rama izquierda: conduce el impulso hacia el ventrículo izquierdo",
+    "Activación ventricular: distribuye el impulso hacia las fibras de Purkinje"
+],
+
+"Fibras de Purkinje": [
+    "Ubicación: red subendocárdica de los ventrículos",
+    "Conducción rápida: distribuye el impulso por el miocardio ventricular",
+    "Sincronización: favorece una contracción ventricular coordinada",
+    "Complejo QRS: representa la despolarización ventricular",
+    "Eyección: la activación eléctrica precede a la contracción mecánica"
+],
+
+};
+
+const hemodinamica = {
+    "Volumen sistólico": {
+        concepto: "Cantidad de sangre expulsada por un ventrículo en cada latido.",
+        formula: "VS = VTD - VTS",
+        ejemplo: "130 mL - 60 mL = 70 mL"
+    },
+
+    "Gasto cardíaco": {
+        concepto: "Volumen de sangre impulsado por cada ventrículo en un minuto.",
+        formula: "GC = FC × VS",
+        ejemplo: "75 × 70 = 5250 mL/min = 5.25 L/min"
+    },
+
+    "Precarga": {
+        concepto: "Grado de estiramiento del miocardio al final de la diástole.",
+        relacion: "Depende del llenado ventricular y del retorno venoso."
+    },
+
+    "Contractilidad": {
+        concepto: "Capacidad del miocardio para generar fuerza a una precarga determinada.",
+        relacion: "Aumenta con la estimulación simpática y la disponibilidad de calcio."
+    },
+
+    "Poscarga": {
+        concepto: "Carga que el ventrículo debe vencer para eyectar sangre.",
+        relacion: "Su aumento puede reducir el volumen sistólico."
+    },
+
+    "Ley de Frank-Starling": {
+        concepto: "Dentro de límites fisiológicos, un mayor llenado ventricular produce una contracción más intensa.",
+        relacion: "Relaciona la precarga con el volumen sistólico."
+    }
+};
+
+
+function mostrarCorazon(nombre) {
+    const visor = document.getElementById("heartViewer");
+    const etiqueta = document.getElementById("heartLabel");
+    const objeto = document.getElementById("corazonReal");
+
+    if (!visor || !etiqueta || !objeto) return;
+
+    const regiones = {
+        "Diástole auricular": ["right_atrium", "left_atrium"],
+        "Sístole auricular": ["right_atrium", "left_atrium"],
+        "Diástole ventricular": ["right_ventricle", "left_ventricle"],
+        "Sístole ventricular": ["right_ventricle", "left_ventricle"]
+    };
+
+    const seleccion = regiones[nombre];
+
+    visor.hidden = !seleccion;
+    if (!seleccion) return;
+
+    etiqueta.textContent = nombre;
+
+    function iluminar() {
+        const svg = objeto.contentDocument;
+        if (!svg) return;
+
+        const todas = [
+            "right_atrium", "left_atrium",
+            "right_ventricle", "left_ventricle"
+        ];
+
+        todas.forEach(id => {
+            const parte = svg.getElementById(id);
+            if (!parte) return;
+
+            parte.style.removeProperty("filter");
+            parte.style.removeProperty("stroke");
+            parte.style.removeProperty("stroke-width");
+
+            if (seleccion.includes(id)) {
+                parte.style.filter =
+                    "brightness(1.5) drop-shadow(0 0 8px #ff334f)";
+                parte.style.stroke = "#ff4058";
+                parte.style.strokeWidth = "3px";
+            }
+        });
+    }
+
+    if (objeto.contentDocument?.documentElement) {
+        iluminar();
+    }
+
+    objeto.addEventListener("load", iluminar, { once: true });
+}
+
+
 function renderTopic() {
 
     const topic = topics[activeTopic];
+    document.getElementById("heartViewer").hidden = true;
+    document.body.dataset.topic = topic.id;
 
+    // Actualizar el encabezado.
     topicTitle.textContent = topic.title;
+    topicDescription.textContent = topic.description;
+    relationText.textContent = topic.relation;
 
-    topicDescription.textContent =
-        topic.description;
+    // Limpiar el mapa anterior.
+    conceptsContainer.innerHTML = "";
+    connections.innerHTML = "";
 
-    relationText.textContent =
-        topic.relation;
+    // Primera columna.
+    const firstColumn = document.createElement("div");
+    firstColumn.className = "map-level-one";
 
-    document.documentElement.style.setProperty(
-        "--active-color", topic.color
+    // Segunda columna.
+    const secondColumn = document.createElement("div");
+    secondColumn.className = "map-level-two";
+
+    topic.concepts.forEach((concept, index) => {
+
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "map-concept";
+
+        card.style.setProperty(
+            "--branch-color",
+            topic.color
+        );
+
+        card.textContent = concept.title;
+
+card.title = concept.link
+    ? `${topic.title} ${concept.link.toLowerCase()} ${concept.title.toLowerCase()}`
+    : concept.title;
+
+        card.addEventListener("click", () => {
+            mostrarCorazon(concept.title);
+
+            // Desmarcar las otras tarjetas.
+            firstColumn.querySelectorAll(".map-concept")
+                .forEach(element => {
+                    element.classList.remove("selected");
+                });
+
+            // Marcar la tarjeta seleccionada.
+            card.classList.add("selected");
+
+            // Limpiar la segunda columna.
+            secondColumn.innerHTML = "";
+
+           
+            // Crear las subramas del concepto seleccionado.
+            
+
+
+            
+
+let items = [...(subtopics[concept.title] || [])];
+
+// Incorporar los conceptos hemodinámicos al ciclo cardíaco.
+if (topic.id === "ciclo" && concept.title === "Sístole ventricular") {
+    items.push(
+        "Gasto cardíaco: volumen de sangre bombeado por minuto",
+        "Precarga: estiramiento ventricular antes de la contracción",
+        "Contractilidad: capacidad del miocardio para generar fuerza",
+        "Poscarga: carga que debe vencer el ventrículo para eyectar sangre",
+        "Ley de Frank-Starling: relación entre llenado y fuerza de contracción"
+    );
+}
+
+
+items.forEach(text => {
+    const subCard = document.createElement("button");
+    subCard.type = "button";
+    subCard.className = "map-subconcept";
+
+    subCard.style.setProperty(
+        "--branch-color",
+        topic.color
     );
 
-    renderConcepts(topic);
+    const partes = text.split(":");
+    const titulo = partes[0].trim();
+    const explicacion = partes.slice(1).join(":").trim();
+
+    subCard.textContent = titulo;
+
+    subCard.addEventListener("click", () => {
+        const anterior = secondColumn.querySelector(".map-detail");
+        if (anterior) anterior.remove();
+
+        const detalle = document.createElement("div");
+        detalle.className = "map-detail";
+
+        const encabezado = document.createElement("h3");
+        encabezado.textContent = titulo;
+
+        const contenido = document.createElement("p");
+        
+const datos = hemodinamica[titulo];
+
+contenido.textContent = datos
+    ? datos.concepto
+    : (explicacion || text);
+
+detalle.appendChild(encabezado);
+detalle.appendChild(contenido);
+
+if (datos) {
+    const extra = document.createElement("p");
+
+    extra.textContent = [
+        datos.formula,
+        datos.ejemplo,
+        datos.relacion
+    ].filter(Boolean).join(" | ");
+
+    extra.style.marginTop = "10px";
+    detalle.appendChild(extra);
 }
+
+        
+secondColumn.appendChild(detalle);
+
+const posicionTarjeta = subCard.offsetTop;
+
+detalle.style.top = posicionTarjeta + "px";
+
+    });
+
+    secondColumn.appendChild(subCard);
+});
+
+
+            const heading = document.createElement("h3");
+            heading.textContent = concept.title;
+
+            const description = document.createElement("p");
+            description.textContent = concept.detail;
+
+            detailCard.appendChild(heading);
+            detailCard.appendChild(description);
+
+            secondColumn.appendChild(detailCard);
+
+        });
+
+        firstColumn.appendChild(card);
+    });
+
+    conceptsContainer.appendChild(firstColumn);
+    conceptsContainer.appendChild(secondColumn);
+}
+
 
 
 /* ==========================================
    10. CREAR CONCEPTOS DEL MAPA
 ========================================== */
+
 
 function renderConcepts(topic) {
 
@@ -478,31 +830,101 @@ function renderConcepts(topic) {
 
     conceptsContainer.innerHTML = "";
 
-    // Crear los recuadros conceptuales.
+    // Crear las tarjetas conceptuales.
 
     topic.concepts.forEach((concept, index) => {
 
         const node = document.createElement("article");
-
         node.className = "concept-node";
 
         if (topic.id === "cardionector") {
             node.classList.add("electrical-node");
         }
 
+        // Frase de enlace del mapa conceptual.
         const link = document.createElement("span");
         link.className = "concept-link";
         link.textContent = concept.link;
 
+        // Título del concepto.
         const title = document.createElement("h3");
         title.textContent = concept.title;
 
-        const detail = document.createElement("p");
-        detail.textContent = concept.detail;
+        // Resumen visible.
+        const summary = document.createElement("p");
+        summary.textContent = concept.detail;
+
+        // Botón que abre y cierra la tarjeta.
+        const toggle = document.createElement("button");
+        toggle.className = "concept-toggle";
+        toggle.type = "button";
+        toggle.textContent = "Ver explicación +";
+        toggle.setAttribute("aria-expanded", "false");
+
+        // Contenido ampliado.
+        const expanded = document.createElement("div");
+        expanded.className = "concept-expanded";
+        expanded.hidden = true;
+
+        const explanation = document.createElement("p");
+
+        explanation.textContent =
+            concept.explanation ||
+            "Próximamente se incorporará una explicación " +
+            "fisiológica más detallada de este concepto.";
+
+        expanded.appendChild(explanation);
+
+        // Interactividad.
+        toggle.addEventListener("click", () => {
+
+            const wasOpen = !expanded.hidden;
+
+            // Cerrar las demás tarjetas.
+            conceptsContainer
+                .querySelectorAll(".concept-expanded")
+                .forEach(panel => {
+                    panel.hidden = true;
+                });
+
+            conceptsContainer
+                .querySelectorAll(".concept-toggle")
+                .forEach(button => {
+                    button.textContent = "Ver explicación +";
+                    button.setAttribute(
+                        "aria-expanded", "false"
+                    );
+                });
+
+            conceptsContainer
+                .querySelectorAll(".concept-node")
+                .forEach(card => {
+                    card.classList.remove("expanded");
+                });
+
+            // Abrir la tarjeta seleccionada.
+            if (!wasOpen) {
+
+                expanded.hidden = false;
+                node.classList.add("expanded");
+
+                toggle.textContent = "Ocultar explicación −";
+                toggle.setAttribute(
+                    "aria-expanded", "true"
+                );
+            }
+
+            // Ajustar las conexiones al nuevo tamaño.
+            requestAnimationFrame(() => {
+                drawConnections(topic);
+            });
+        });
 
         node.appendChild(link);
         node.appendChild(title);
-        node.appendChild(detail);
+        node.appendChild(summary);
+        node.appendChild(toggle);
+        node.appendChild(expanded);
 
         node.style.setProperty(
             "--node-index", index
@@ -511,9 +933,7 @@ function renderConcepts(topic) {
         conceptsContainer.appendChild(node);
     });
 
-    // Esperar a que el navegador calcule
-    // las posiciones de los conceptos.
-
+    // Dibujar las conexiones iniciales.
     requestAnimationFrame(() => {
 
         if (currentAnimation !== mapAnimation) {
@@ -523,6 +943,7 @@ function renderConcepts(topic) {
         drawConnections(topic);
     });
 }
+
 
 
 /* ==========================================
@@ -674,8 +1095,14 @@ window.addEventListener("resize", () => {
 
 function initializeMediCardio() {
 
+    // Crear el semicírculo interactivo.
     createWheel();
-    renderTopic();
-}
 
+    // Mantener el tema inicial.
+    renderTopic();
+
+    // Preparar las tres ramas del mapa.
+    conceptsContainer.classList.add("three-branch-map");
+
+}
 initializeMediCardio();

@@ -89,22 +89,30 @@
 
 
             <!-- ZONA DE RAMIFICACIONES -->
-            <div class="map-stage" id="map-stage">
+            
+<!-- ZONA DE RAMIFICACIONES -->
+<div class="map-stage" id="map-stage">
 
-                <!-- Flechas animadas -->
-                <svg
-                    id="connections"
-                    class="connections"
-                    aria-hidden="true"
-                ></svg>
+    <!-- Conexiones de las tres ramas -->
+    <svg
+        id="connections"
+        class="connections"
+        aria-hidden="true"
+    ></svg>
 
-                <!-- Conceptos del mapa -->
-                <div
-                    id="concept-nodes"
-                    class="concept-nodes"
-                ></div>
+    <!-- Contenedor de las tres filas -->
+    <div
+        id="concept-nodes"
+        class="concept-nodes"
+    >
+        <!-- JavaScript generará aquí:
+             Fila 1: Ciclo cardíaco
+             Fila 2: Válvulas cardíacas
+             Fila 3: Sistema cardionector -->
+    </div>
 
-            </div>
+</div>
+
 
 
             <!-- RELACIÓN FISIOLÓGICA -->
@@ -131,6 +139,20 @@
 
     <!-- ARCHIVO DE INTERACTIVIDAD -->
     <script src="script.js"></script>
+
+
+
+
+<div id="heartViewer" class="heart-viewer" hidden>
+    <object
+        id="corazonReal"
+        data="corazon.svg"
+        type="image/svg+xml"
+        aria-label="Corazón anatómico interactivo">
+    </object>
+    <p id="heartLabel"></p>
+</div>
+
 
 </body>
 </html>

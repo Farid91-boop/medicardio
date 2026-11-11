@@ -731,3 +731,499 @@ body {
     stroke: rgba(10, 15, 28, 0.6);
     stroke-width: 2px;
 }
+
+/* ==========================================
+   20. TARJETAS CONCEPTUALES DESPLEGABLES
+========================================== */
+
+.concept-toggle {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 9px 13px;
+
+    border: 1px solid var(--active-color);
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--text-primary);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.concept-toggle:hover {
+    background: var(--active-color);
+}
+
+.concept-expanded {
+    margin-top: 16px;
+    padding-top: 15px;
+
+    border-top: 1px solid var(--border-color);
+}
+
+.concept-expanded[hidden] {
+    display: none;
+}
+
+.concept-expanded p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.concept-node.expanded {
+    border-color: var(--active-color);
+    box-shadow: 0 0 22px rgba(0, 0, 0, 0.25);
+}
+
+
+
+/* ==========================================
+   MEDICARDIO - TRES RAMAS HORIZONTALES
+========================================== */
+
+/* Contenedor principal de las ramas */
+.concept-nodes.three-branch-map {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 20px 10px 20px 45px;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Cada tema ocupa una fila independiente */
+.map-branch {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    min-width: 0;
+    padding: 18px;
+    border-left: 4px solid var(--branch-color);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+/* Nombre de la rama */
+.branch-heading {
+    flex: 0 0 155px;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--branch-color);
+}
+
+/* Conceptos organizados horizontalmente */
+.branch-content {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    overflow-x: auto;
+    min-width: 0;
+    padding: 8px 4px 14px;
+}
+
+/* Tarjetas individuales */
+.branch-card {
+    flex: 0 0 190px;
+    padding: 16px;
+    border: 1px solid var(--branch-color);
+    border-radius: 12px;
+    background: #1b2233;
+}
+
+.branch-card h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.branch-card p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #c5d0e2;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 700px) {
+    .map-branch {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .branch-heading {
+        flex: none;
+    }
+
+    .concept-nodes.three-branch-map {
+        padding: 15px;
+    }
+}
+
+
+/* ==========================================
+   MEDICARDIO - MAPA POR NIVELES
+========================================== */
+
+/* Contenedor de las ramificaciones */
+.concept-nodes.three-branch-map {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 45px;
+    padding: 25px 30px 25px 55px;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Primera columna: tres filas verticales */
+.map-level-one {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 0 0 240px;
+}
+
+/* Tarjetas de los conceptos */
+.map-concept {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 85px;
+    width: 100%;
+    padding: 16px;
+    border: 2px solid var(--branch-color);
+    border-radius: 14px;
+    background: #1b2233;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+/* Efecto al pasar el cursor */
+.map-concept:hover {
+    transform: translateX(5px);
+    background: #283247;
+}
+
+/* Concepto seleccionado */
+.map-concept.selected {
+    border-width: 3px;
+    background: #30394e;
+    box-shadow: 0 0 18px rgba(255,255,255,0.08);
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 700px) {
+    .concept-nodes.three-branch-map {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .map-level-one {
+        flex-basis: 200px;
+    }
+}
+
+
+/* SEGUNDA COLUMNA DEL MAPA CONCEPTUAL */
+
+.map-level-two {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex: 0 0 240px;
+    align-items: stretch;
+}
+
+.map-subconcept {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 75px;
+    padding: 14px;
+    border: 2px solid var(--branch-color);
+    border-radius: 12px;
+    background: #1b2233;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    animation: appearSubconcept 0.35s ease both;
+}
+
+@keyframes appearSubconcept {
+    from {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+/* Explicaciones de los subconceptos */
+
+.map-detail {
+    padding: 18px;
+    margin-top: 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    animation: aparecerDetalle 0.25s ease;
+}
+
+.map-detail h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    color: #ffffff;
+}
+
+.map-detail p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #d8e1eb;
+}
+
+@keyframes aparecerDetalle {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Permitir que la explicación salga al lado */
+
+.map-level-two {
+    overflow: visible;
+}
+
+.map-subconcept {
+    position: relative;
+}
+
+.map-detail {
+    position: relative;
+    width: 260px;
+    margin: 8px 0 12px 0;
+    padding: 16px;
+    border-radius: 12px;
+    background: #20293b;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    box-sizing: border-box;
+}
+
+.map-level-two {
+    position: relative;
+}
+
+
+/* Explicación alineada con la tarjeta seleccionada */
+
+.map-level-two {
+    position: relative;
+    overflow: visible;
+}
+
+.map-detail {
+    position: absolute;
+    left: calc(100% + 18px);
+    width: 280px;
+    margin: 0;
+    padding: 16px;
+    box-sizing: border-box;
+
+    background: #20293b;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+
+    z-index: 20;
+}
+
+.map-detail h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+}
+
+.map-detail p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* FONDO DINÁMICO DE MEDICARDIO */
+
+body {
+    --topic-glow: rgba(200, 62, 80, 0.13);
+    background-color: #101522;
+    background-image:
+        radial-gradient(
+            ellipse at 65% 45%,
+            var(--topic-glow) 0%,
+            transparent 75%
+        );
+    background-attachment: fixed;
+    transition: background-color 0.5s ease;
+}
+
+body[data-topic="ciclo"] {
+    --topic-glow: rgba(200, 62, 80, 0.18);
+}
+
+body[data-topic="valvulas"] {
+    --topic-glow: rgba(52, 126, 170, 0.18);
+}
+
+body[data-topic="cardionector"] {
+    --topic-glow: rgba(214, 172, 64, 0.16);
+}
+
+
+/* VISOR ANIMADO DEL CORAZÓN */
+
+.heart-viewer {
+    position: fixed;
+    right: 30px;
+    bottom: 25px;
+    width: 220px;
+    padding: 12px;
+    background: rgba(20, 27, 43, 0.95);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 18px;
+    z-index: 100;
+    text-align: center;
+    color: white;
+}
+
+.heart-viewer[hidden] {
+    display: none;
+}
+
+.heart-viewer svg {
+    width: 100%;
+    height: auto;
+}
+
+.heart-beat {
+    transform-origin: center;
+    animation: latido 0.8s ease-in-out infinite;
+}
+
+.heart-beat path {
+    transition: fill 0.3s, filter 0.3s;
+}
+
+.heart-beat path.iluminado {
+    fill: #ff6678;
+    filter: drop-shadow(0 0 9px #ff5269);
+}
+
+#heartLabel {
+    margin: 4px 0;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+@keyframes latido {
+    0%, 100% { transform: scale(1); }
+    35% { transform: scale(1.045); }
+    55% { transform: scale(1); }
+    70% { transform: scale(1.025); }
+}
+
+@media (max-width: 900px) {
+    .heart-viewer {
+        width: 150px;
+        right: 12px;
+        bottom: 12px;
+    }
+}
+
+
+/* MEDICARDIO: CONTROL DEL TAMAÑO DE LAS TARJETAS */
+
+.map-level-one,
+.map-level-two {
+    width: 220px !important;
+    min-width: 220px !important;
+    max-width: 220px !important;
+    flex: 0 0 220px !important;
+    align-self: flex-start;
+    overflow: visible;
+}
+
+.map-concept,
+.map-subconcept {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 65px;
+    height: auto;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+.map-detail {
+    position: absolute;
+    left: calc(100% + 18px);
+    width: 270px;
+    max-width: 270px;
+    box-sizing: border-box;
+    z-index: 30;
+}
+
+@media (max-width: 1050px) {
+    .map-level-one,
+    .map-level-two {
+        width: 180px !important;
+        min-width: 180px !important;
+        max-width: 180px !important;
+        flex-basis: 180px !important;
+    }
+
+    .map-detail {
+        width: 220px;
+        max-width: 220px;
+    }
+}
+
+
+/* CORAZÓN ANATÓMICO INTERACTIVO */
+
+#corazonReal {
+    display: block;
+    width: 100%;
+    height: 250px;
+    border: none;
+    animation: latidoReal 0.85s ease-in-out infinite;
+}
+
+@keyframes latidoReal {
+    0%, 100% { transform: scale(1); }
+    35% { transform: scale(1.045); }
+    55% { transform: scale(1); }
+    70% { transform: scale(1.025); }
+}
