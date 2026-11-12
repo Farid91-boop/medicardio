@@ -659,6 +659,7 @@ function mostrarCorazon(nombre) {
 function renderTopic() {
 
     const topic = topics[activeTopic];
+    mostrarImagenValvula("");
     document.getElementById("heartViewer").hidden = true;
     document.body.dataset.topic = topic.id;
 
@@ -698,6 +699,7 @@ card.title = concept.link
 
         card.addEventListener("click", () => {
             mostrarCorazon(concept.title);
+            mostrarImagenValvula(concept.title);
 
             // Desmarcar las otras tarjetas.
             firstColumn.querySelectorAll(".map-concept")
@@ -749,6 +751,7 @@ items.forEach(text => {
     subCard.textContent = titulo;
 
     subCard.addEventListener("click", () => {
+        mostrarImagenValvula(titulo);
         const anterior = secondColumn.querySelector(".map-detail");
         if (anterior) anterior.remove();
 
@@ -1106,3 +1109,102 @@ function initializeMediCardio() {
 
 }
 initializeMediCardio();
+
+
+function mostrarImagenValvula(nombre) {
+    const visor = document.getElementById("visorValvula");
+    const foto = document.getElementById("fotoValvula");
+
+    if (!visor || !foto) return;
+
+    const imagenes = {
+        mitral: "mitral.png",
+        tricuspide: "tricuspide.png",
+        aortica: "aortica.png",
+        pulmonar: "pulmonar.png"
+    };
+
+    const nombreNormalizado = nombre
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    const valvula = Object.keys(imagenes).find(
+        clave => nombreNormalizado.includes(clave)
+    );
+
+    if (valvula) {
+        foto.src = imagenes[valvula];
+        visor.style.display = "block";
+    } else {
+        visor.style.display = "none";
+        foto.removeAttribute("src");
+    }
+}
+
+
+/* RAMAS AL PASAR EL CURSOR */
+(() => {
+    const svgNS = "http://www.w3.org/2000/svg";
+
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.id = "ramasInteractivas";
+    document.body.appendChild(svg);
+
+    function conectar(origen, destino) {
+        const a = origen.getBoundingClientRect();
+        const b = destino.getBoundingClientRect();
+
+        const x1 = a.right;
+        const y1 = a.top + a.height / 2;
+        const x2 = b.left;
+        const y2 = b.top + b.height / 2;
+        const curva = Math.max(25, Math.abs(x2 - x1) / 2);
+
+        const path = document.createElementNS(svgNS, "path");
+        path.setAttribute(
+            "d",
+            `M ${x1} ${y1} C ${x1 + curva} ${y1},
+             ${x2 - curva} ${y2}, ${x2} ${y2}`
+        );
+        path.classList.add("visible");
+        svg.appendChild(path);
+    }
+
+    function limpiar() {
+        svg.replaceChildren();
+    }
+
+    document.addEventListener("pointerover", (evento) => {
+        const elemento = evento.target.closest(
+            ".map-concept, .subtopic-card"
+        );
+
+        if (!elemento) return;
+
+        limpiar();
+
+        const padre = elemento.parentElement;
+        if (!padre) return;
+
+        const hermanos = [...padre.children].filter(
+            nodo => nodo !== elemento &&
+            nodo.matches(".map-concept, .subtopic-card")
+        );
+
+        hermanos.forEach(nodo => conectar(elemento, nodo));
+    });
+
+    document.addEventListener("pointerout", (evento) => {
+        const elemento = evento.target.closest(
+            ".map-concept, .subtopic-card"
+        );
+
+        if (elemento && !elemento.contains(evento.relatedTarget)) {
+            limpiar();
+        }
+    });
+
+    window.addEventListener("scroll", limpiar, true);
+    window.addEventListener("resize", limpiar);
+})();
